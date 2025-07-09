@@ -19,7 +19,7 @@ import UIKit
  }
  ```
  */
-public protocol PanModalPresentable: AnyObject {
+@MainActor public protocol PanModalPresentable: AnyObject {
   /**
    The scroll view embedded in the view controller.
    Setting this value allows for seamless transition scrolling between the embedded scroll view

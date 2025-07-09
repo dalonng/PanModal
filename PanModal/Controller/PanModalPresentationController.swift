@@ -448,9 +448,8 @@ private extension PanModalPresentationController {
      As we adjust the bounds during `handleScrollViewTopBounce`
      we should assume that contentInsetAdjustmentBehavior will not be correct
      */
-    if #available(iOS 11.0, *) {
-      scrollView.contentInsetAdjustmentBehavior = .never
-    }
+
+    scrollView.contentInsetAdjustmentBehavior = .never
   }
 }
 
@@ -677,10 +676,12 @@ private extension PanModalPresentationController {
       /**
        Incase we have a situation where we have two containerViews in the same presentation
        */
-      guard self?.containerView != nil
-      else { return }
+      Task { @MainActor in
+        guard self?.containerView != nil
+        else { return }
 
-      self?.didPanOnScrollView(scrollView, change: change)
+        self?.didPanOnScrollView(scrollView, change: change)
+      }
     }
   }
 

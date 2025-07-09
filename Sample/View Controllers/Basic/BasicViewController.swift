@@ -6,6 +6,7 @@
 //  Copyright © 2019 PanModal. All rights reserved.
 //
 
+import PanModal
 import UIKit
 
 class BasicViewController: UIViewController {

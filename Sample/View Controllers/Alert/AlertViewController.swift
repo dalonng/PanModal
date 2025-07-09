@@ -6,63 +6,63 @@
 //  Copyright © 2019 PanModal. All rights reserved.
 //
 
+import PanModal
 import UIKit
 
 class AlertViewController: UIViewController, PanModalPresentable {
+  private let alertViewHeight: CGFloat = 68
 
-    private let alertViewHeight: CGFloat = 68
+  let alertView: AlertView = {
+    let alertView = AlertView()
+    alertView.layer.cornerRadius = 10
+    return alertView
+  }()
 
-    let alertView: AlertView = {
-        let alertView = AlertView()
-        alertView.layer.cornerRadius = 10
-        return alertView
-    }()
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    setupView()
+  }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupView()
-    }
+  private func setupView() {
+    view.addSubview(alertView)
+    alertView.translatesAutoresizingMaskIntoConstraints = false
+    alertView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+    alertView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+    alertView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+    alertView.heightAnchor.constraint(equalToConstant: alertViewHeight).isActive = true
+  }
 
-    private func setupView() {
-        view.addSubview(alertView)
-        alertView.translatesAutoresizingMaskIntoConstraints = false
-        alertView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        alertView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
-        alertView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-        alertView.heightAnchor.constraint(equalToConstant: alertViewHeight).isActive = true
-    }
+  // MARK: - PanModalPresentable
 
-    // MARK: - PanModalPresentable
+  var panScrollable: UIScrollView? {
+    nil
+  }
 
-    var panScrollable: UIScrollView? {
-        return nil
-    }
+  var shortFormHeight: PanModalHeight {
+    .contentHeight(alertViewHeight)
+  }
 
-    var shortFormHeight: PanModalHeight {
-        return .contentHeight(alertViewHeight)
-    }
+  var longFormHeight: PanModalHeight {
+    shortFormHeight
+  }
 
-    var longFormHeight: PanModalHeight {
-        return shortFormHeight
-    }
+  var panModalBackgroundColor: UIColor {
+    UIColor.black.withAlphaComponent(0.1)
+  }
 
-    var panModalBackgroundColor: UIColor {
-        return UIColor.black.withAlphaComponent(0.1)
-    }
+  var shouldRoundTopCorners: Bool {
+    false
+  }
 
-    var shouldRoundTopCorners: Bool {
-        return false
-    }
+  var showDragIndicator: Bool {
+    true
+  }
 
-    var showDragIndicator: Bool {
-        return true
-    }
+  var anchorModalToLongForm: Bool {
+    false
+  }
 
-    var anchorModalToLongForm: Bool {
-        return false
-    }
-
-    var isUserInteractionEnabled: Bool {
-        return true
-    }
+  var isUserInteractionEnabled: Bool {
+    true
+  }
 }
